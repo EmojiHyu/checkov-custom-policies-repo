@@ -1,0 +1,29 @@
+---
+metadata:
+  name: Check that all resources are tagged with the key - Environment
+  id: CUS_AWS_1
+  category: GENERAL_SECURITY
+scope:
+  provider: aws
+definition:
+  cond_type: attribute
+  resource_types:
+    - aws_s3_bucket
+    - aws_instance
+    - aws_elb
+    - aws_lb
+    - aws_db_instance
+    - aws_elasticache_cluster
+    - aws_emr_cluster
+    - aws_redshift_cluster
+    - aws_elasticsearch_domain
+    - aws_rds_cluster
+    - aws_efs_mount_target
+    - aws_efs_file_system
+    - aws_ecs_service
+    - aws_security_group
+    - aws_sqs_queue
+  attribute: tags.Environment
+  operator: exists
+
+  # This cannot read universal tags (default_tags at provider level)
